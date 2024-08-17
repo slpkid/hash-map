@@ -75,7 +75,6 @@ function HashMap() {
   const has = (key) => {
     let returnValue = false
     for (const bucket of map) {
-      console.log(bucket)
       if (bucket[1].has(key)) {
         returnValue = true
         break
@@ -84,7 +83,19 @@ function HashMap() {
     return returnValue
   }
 
-  return { hash, map, set, get, has, growCapacity };
+  const remove = (key) => {
+    let valueDeleted = false 
+    for (const bucket of map) {
+      if (bucket[1].has(key)) {
+        bucket[1].delete(key)
+        valueDeleted = true
+        break
+      }
+    }
+    return valueDeleted
+  }
+
+  return { hash, map, set, get, has, remove, growCapacity };
 }
 
 const HashMapDude = HashMap();
