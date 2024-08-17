@@ -95,7 +95,19 @@ function HashMap() {
     return valueDeleted
   }
 
-  return { hash, map, set, get, has, remove, growCapacity };
+  const length = () => {
+    let length = 0
+
+    for (const bucket of map) {
+      length += bucket[1].size
+    }
+
+    return length
+  }
+
+  return { hash, map, set, get, has, remove,
+    length, growCapacity 
+  };
 }
 
 const HashMapDude = HashMap();
