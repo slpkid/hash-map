@@ -17,6 +17,8 @@ function HashMap() {
   // func: create buckets
   // 
 
+  // hash uses the capacity property to determine 
+  // how many buckets it should be distributing to
   const hash = (key) => {
     let hashCode = 0;
   
@@ -83,6 +85,8 @@ function HashMap() {
     return returnValue
   }
 
+  // removes the specified key from the hashmap
+  // and returns true, returns false if it doesn't exist
   const remove = (key) => {
     let valueDeleted = false 
     for (const bucket of map) {
@@ -95,6 +99,7 @@ function HashMap() {
     return valueDeleted
   }
 
+  // returns the number of stored keys in hashmap
   const length = () => {
     let length = 0
 
@@ -105,14 +110,35 @@ function HashMap() {
     return length
   }
 
+  //removes all entries from hashmap
   const clear = () => {
     for (const bucket of map) {
       bucket[1].clear()
     }
   }
 
+  // returns an array containing all keys
+  const keys = () => {
+    let keyArray = []
+    for (const bucket of map) {
+      const bucketArray = Array.from(bucket[1].keys())
+      keyArray = keyArray.concat(bucketArray)
+    }
+    return keyArray
+  }
+
+    // returns an array containing all keys
+    const values = () => {
+      let valuesArray = []
+      for (const bucket of map) {
+        const bucketArray = Array.from(bucket[1].values())
+        valuesArray = valuesArray.concat(bucketArray)
+      }
+      return valuesArray
+    }
+
   return { hash, map, set, get, has, remove,
-    length, clear, growCapacity 
+    length, clear, keys, values, growCapacity 
   };
 }
 
@@ -146,6 +172,8 @@ console.log(HashMapDude.has('wonton'))
 console.log(HashMapDude.has('kite'))
 console.log(HashMapDude.has('wonton12903812093'))
 console.log(HashMapDude.has('thenumber6'))
+console.log(HashMapDude.keys())
+console.log(HashMapDude.values())
 // HashMapDude.set("hugh", 321);
 // console.log(HashMapDude.get("hugh"));
 // HashMapDude.set("butcher", 321);
