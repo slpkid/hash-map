@@ -137,8 +137,17 @@ function HashMap() {
       return valuesArray
     }
 
+    const entries = () => {
+      let entriesArray = []
+      for (const bucket of map) {
+        const bucketArray = Array.from(bucket[1].entries())
+        entriesArray = entriesArray.concat(bucketArray)
+      }
+      return entriesArray
+    }
+
   return { hash, map, set, get, has, remove,
-    length, clear, keys, values, growCapacity 
+    length, clear, keys, values, entries, growCapacity 
   };
 }
 
