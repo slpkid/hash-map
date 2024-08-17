@@ -105,8 +105,14 @@ function HashMap() {
     return length
   }
 
+  const clear = () => {
+    for (const bucket of map) {
+      bucket[1].clear()
+    }
+  }
+
   return { hash, map, set, get, has, remove,
-    length, growCapacity 
+    length, clear, growCapacity 
   };
 }
 
